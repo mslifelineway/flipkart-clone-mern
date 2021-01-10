@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { NavLink, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import "./header.css";
+import "./header.scss";
 import { logout } from '../../actions/auth.actions'
 
 function Header() {
@@ -30,7 +30,7 @@ function Header() {
   }
 
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+    <Navbar collapseOnSelect expand="lg" fixed="top">
       <Container fluid={true}>
         <Link to="/"><Navbar.Brand>Admin Dashboard</Navbar.Brand></Link>
 

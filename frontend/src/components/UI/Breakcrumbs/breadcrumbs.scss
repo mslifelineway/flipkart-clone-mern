@@ -1,0 +1,20 @@
+$aGradientBackground: linear-gradient(
+  to right,
+  rgba(226, 252, 165, 0.753),
+  rgba(81, 192, 236, 0.7)
+);
+.breadcrumbs-container {
+  padding: 20px 20px;
+  box-shadow: 1px 2px 4px 1px #e4e4e4;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  .navigation-icon {
+    transform: rotate(90deg);
+    margin: 0 5px;
+  }
+
+  .text-bold {
+    font-weight: bold;
+  }
+}

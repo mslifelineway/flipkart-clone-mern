@@ -1,83 +1,53 @@
 .col {
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 }
 .parent {
-    font-size: 20px;
-    font-weight: 600;
+  font-size: 20px;
+  font-weight: 600;
 }
 .products_page {
-    .child {
-        margin-left: 30px;
-    }
+  .child {
+    margin-left: 30px;
+  }
 
-    .body-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 30px;
-    }
+  .body-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+  }
 
-    .body-header .title {
-        font-size: 25px;
-        font-weight: 600;
-    }
+  .body-header .title {
+    font-size: 25px;
+    font-weight: 600;
+  }
 
-    .category-form {
-        display: flex;
-        flex-direction: column;
-        /* padding: 20px 30px; */
-        width: 100%;
-    }
+  .form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
 
-    .category-form .MuiInput-root {
-        margin: 10px 0;
-    }
-    .category-form .addCategoryButton {
-        display: block;
-        width: 30px;
-        margin: 0 auto;
-        margin-top: 30px;
-    }
+  .form .MuiInput-root {
+    margin: 10px 0;
+  }
+  .form .addCategoryButton {
+    display: block;
+    width: 30px;
+    margin: 0 auto;
+    margin-top: 30px;
+  }
 
-    .appModal {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 100%;
-        margin: 0;
-        min-width: 100%;
-        max-width: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        display: flex;
-        overflow: auto;
-        align-items: center;
-        z-index: 1040;
-    }
+  .buttonGroups {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+  }
 
-    .appModal .modal-body {
-        background-color: white;
-        max-width: 30%;
-        height: 550px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0;
-        padding: 0 50px;
-        border-radius: 20px 10px 30px/10px;
-        z-index: 1050;
-    }
-
-    .buttonGroups {
-        margin-top: 10px;
-        display: flex;
-        justify-content: space-around;
-    }
-    .hide-modal {
-        display: none;
-    }
-    .show-modal {
-        display: flex;
-    }
+  //setting height and with of the custom modal
+  .modal-body {
+    max-width: 30%;
+    height: 550px;
+  }
 }

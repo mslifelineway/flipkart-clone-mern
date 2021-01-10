@@ -1,0 +1,40 @@
+.custom-modal-parent-container {
+  .customAppModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    margin: 0;
+    min-width: 100%;
+    max-width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    overflow: auto;
+    align-items: center;
+    z-index: 1040;
+
+    .modal-body {
+      background-color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      padding: 0 50px;
+      border-radius: 20px 10px 30px/10px;
+      z-index: 1050;
+      flex-direction: column;
+      .madal-title {
+        font-size: 25px;
+        font-weight: 600;
+        text-align: center;
+      }
+    }
+  }
+  .hide-modal {
+    display: none;
+  }
+  .show-modal {
+    display: flex;
+  }
+}

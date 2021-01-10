@@ -1,0 +1,29 @@
+$color: #4f5051;
+$aColor: #4ec4f3;
+$aGradientBackground: linear-gradient(
+  to right,
+  rgba(226, 252, 165, 0.7),
+  rgba(81, 192, 236, 0.7)
+);
+
+body,
+a,
+.link {
+  color: $color;
+}
+
+body {
+  background: #fdfdfd;
+}
+
+a:hover,
+.link:hover {
+  color: $aColor;
+  cursor: pointer;
+  //   background: $aGradientBackground;
+}
+
+.MuiButton-contained {
+  outline: none;
+}
+

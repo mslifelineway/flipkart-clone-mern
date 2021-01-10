@@ -1,0 +1,37 @@
+$headerGradientBackground: linear-gradient(
+  to right,
+  rgba(86, 194, 236, 0.7),
+  rgba(81, 192, 236, 0.7),
+  rgba(86, 194, 236, 0.7)
+);
+$headerBrandColor: rgb(66, 66, 66);
+$aGradientBackground: linear-gradient(
+  to right,
+  rgba(226, 252, 165, 0.7),
+  rgba(81, 192, 236, 0.7)
+);
+
+
+.link {
+  color: white;
+  &:hover {
+    color: rgb(139, 34, 34);
+  }
+}
+
+.navbar {
+  background: $headerGradientBackground;
+  box-shadow: 1px 2px 4px 1px #e4e4e4;
+
+  .navbar-container {
+    display: flex;
+    height: 56px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+  }
+}
+
+.navbar-light .navbar-brand {
+  color: $headerBrandColor;
+}

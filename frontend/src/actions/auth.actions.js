@@ -2,7 +2,6 @@ import axios from "../Axios/axios";
 import { authActionTypes } from "./action-types";
 
 export const login = (user) => {
-
   return async (dispatch) => {
     dispatch({
       type: authActionTypes.LOGIN_REQUEST,
@@ -11,12 +10,13 @@ export const login = (user) => {
     const res = await axios.post("/admin/signIn", { ...user });
     if (res.status === 200) {
       const { token, user } = res.data;
-      localStorage.setItem('token', token);
-      localStorage.setItem('user', JSON.stringify(user))
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(user));
       dispatch({
         type: authActionTypes.LOGIN_SUCCESS,
         payload: {
-          token, user
+          token,
+          user,
         },
       });
     } else {
@@ -26,7 +26,7 @@ export const login = (user) => {
           type: authActionTypes.LOGIN_FAILURE,
           payload: {
             error: error,
-            message: message
+            message: message,
           },
         });
       }
@@ -35,32 +35,34 @@ export const login = (user) => {
 };
 
 export const isUserLoggedIn = () => {
-  return async dispatch => {
-    const token = localStorage.getItem('token');
+  return async (dispatch) => {
+    const token = localStorage.getItem("token");
+    // dispatch({
+    //   type: authActionTypes.LOGIN_REQUEST,
+    // });
     if (token) {
-      const user = JSON.parse(localStorage.getItem('user'));
+      const user = JSON.parse(localStorage.getItem("user"));
       dispatch({
         type: authActionTypes.LOGIN_SUCCESS,
         payload: {
-          token, user
+          token,
+          user,
         },
       });
     } else {
-      dispatch({
-        type: authActionTypes.LOGIN_FAILURE,
-        payload: {
-          error: "Failed to login.",
-          message: "Failed to login."
-        },
-      });
+      // dispatch({
+      //   type: authActionTypes.LOGIN_FAILURE,
+      //   payload: {
+      //     error: "Failed to login.",
+      //     message: "Failed to login.",
+      //   },
+      // });
     }
-  }
-}
+  };
+};
 
 export const logout = () => {
-
-  return async dispatch => {
-
+  return async (dispatch) => {
     dispatch({
       type: authActionTypes.LOGOUT_REQUEST,
     });
@@ -75,16 +77,13 @@ export const logout = () => {
       dispatch({
         type: authActionTypes.LOGOUT_FAILURE,
         error: error,
-        message: message
+        message: message,
       });
     }
-
-  }
-}
-
+  };
+};
 
 export const register = (user) => {
-
   return async (dispatch) => {
     dispatch({
       type: authActionTypes.REGISTER_REQUEST,

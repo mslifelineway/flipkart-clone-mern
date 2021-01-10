@@ -1,6 +1,6 @@
 const { format } = require("morgan");
 const slugify = require("slugify");
-const Category = require("../models/category");
+const Category = require("../models/category.model");
 
 //recursive method to format or arrange the categories in an order
 function formatCategories(categories, parentId = null) {

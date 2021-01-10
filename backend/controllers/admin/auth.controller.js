@@ -1,5 +1,6 @@
 const User = require("../../models/user.model");
 const jwt = require("jsonwebtoken");
+const bcrypt = require('bcrypt');
 
 exports.signUp = (req, res) => {
   if (!req.body) {
@@ -8,7 +9,7 @@ exports.signUp = (req, res) => {
       message: "Admin details must not be empty!",
     });
   }
-  User.findOne({ email: req.body.email }).exec((err, user) => {
+  User.findOne({ email: req.body.email }).exec(async(err, user) => {
     if (err) {
       return res.status(400).json({
         error: null,
@@ -23,12 +24,12 @@ exports.signUp = (req, res) => {
     }
 
     const { firstName, lastName, email, password } = req.body;
-
+    let hashedPassword = await bcrypt.hashSync(password, 10);
     const _user = new User({
       firstName,
       lastName,
       email,
-      password,
+      hashedPassword,
       username: Math.random().toString(),
       role: process.env.ADMIN_ROLE,
     });

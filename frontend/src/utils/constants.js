@@ -1,0 +1,9 @@
+exports.USER = "USER";
+exports.FIRST_NAME = "FIRST_NAME";
+exports.LAST_NAME = "LAST_NAME";
+exports.ADMIN = "ADMIN";
+exports.CATEGORY = "CATEGORY";
+exports.PRODUCT = "PRODUCT";
+exports.QUANTITY_NUMBER = "QUANTITY_NUMBER";
+exports.PRICE_NUMBER = "PRICE_NUMBER";
+

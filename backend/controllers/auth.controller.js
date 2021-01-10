@@ -1,5 +1,6 @@
 const User = require("../models/user.model");
 const jwt = require("jsonwebtoken");
+const bcrypt = require('bcrypt');
 
 exports.signUp = (req, res) => {
   if (!req.body) {
@@ -8,7 +9,7 @@ exports.signUp = (req, res) => {
       message: "Please provide the user details!",
     });
   }
-  User.findOne({ email: req.body.email }).exec((err, user) => {
+  User.findOne({ email: req.body.email }).exec(async(err, user) => {
     if (err) {
       return res.status(400).json({
         error: err,
@@ -23,12 +24,12 @@ exports.signUp = (req, res) => {
     }
 
     const { firstName, lastName, email, password } = req.body;
-
+    let hashedPassword = await bcrypt.hashSync(password, 10);
     const _user = new User({
       firstName,
       lastName,
       email,
-      password,
+      hashedPassword,
       username: Math.random().toString(),
     });
 
@@ -57,7 +58,7 @@ exports.signIn = (req, res) => {
         if (user.authenticate(req.body.password)) {
           //authenticated successfully, so let's create a token that will manage the user session
           const token = jwt.sign({ _id: user._id, role: user.role }, process.env.JWT_SECRET, {
-            expiresIn: "1h",
+            expiresIn: "30d",
           });
 
           const { firstName, lastName, email, role, fullName } = user;
