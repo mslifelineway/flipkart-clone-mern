@@ -45,6 +45,11 @@
     justify-content: space-around;
   }
 
+  .MuiDataGrid-root .MuiDataGrid-row {
+    width: fit-content;
+    display: flex;
+    cursor: pointer;
+  }
   //setting height and with of the custom modal
   .modal-body {
     max-width: 30%;

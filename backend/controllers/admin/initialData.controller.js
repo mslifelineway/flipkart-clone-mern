@@ -5,6 +5,7 @@ exports.getInitialData = async (req, res) => {
   const categories = await Category.find({}).exec();
   const products = await Product.find({})
     .select("_id name price quantity description slug pictures categoryId")
+    .populate({path:"categoryId", select: {name: 1}})
     .exec();
   return res.json({
     categories: formatCategories(categories),
