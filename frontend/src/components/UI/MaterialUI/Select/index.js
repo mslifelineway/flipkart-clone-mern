@@ -1,32 +1,62 @@
-import { MenuItem, Select } from '@material-ui/core';
-import React from 'react';
-
+import { FormHelperText, MenuItem, Select } from "@material-ui/core";
+import React from "react";
 const createOptions = (options, defaultSelect, defaultSelectValue) => {
-    let optionList = [];
-    options.map((op, index) => {
-        if (index === 0)
-            optionList.push(
-                <MenuItem id={`defaultOption${index}`} key={`defaultMenuOption${index}`} value={defaultSelectValue}>{defaultSelect}</MenuItem>
-            );
-        return optionList.push(
-            <MenuItem id={`menuItem${index}`} key={op.value + "_" + index} value={op.value}>{op.name}</MenuItem>
-        );
-    })
-    return optionList;
-}
-const MaterialSelect = ({ labelId, id, value, onChange, options = [], defaultSelect, defaultSelectValue }) => {
-    return (
-        <Select
-            key={labelId}
-            labelId={labelId}
-            id={id}
-            value={value}
-            onChange={onChange}
-            displayEmpty
+  let optionList = [];
+  optionList.push(
+        <MenuItem
+          id={`defaultOption0`}
+          key={`defaultMenuOption0`}
+          value={defaultSelectValue}
         >
-            {createOptions(options, defaultSelect, defaultSelectValue)}
-        </Select>
+          {defaultSelect}
+        </MenuItem>
+      );
+  options.map((op, index) => {
+    return optionList.push(
+      <MenuItem
+        id={`menuItem${index}`}
+        key={op.value + "_" + index}
+        value={op.value}
+      >
+        {op.name}
+      </MenuItem>
     );
-}
+  });
+  return optionList;
+};
+
+/** To show the error message below the select input,
+ *  must pass the 'showError', but to hide it no need to pass this
+ * props. 'showError' can be any value but better will pass
+ * showError = true
+ *  */
+const MaterialSelect = ({
+  labelId,
+  id,
+  value,
+  onChange,
+  options = [],
+  defaultSelect,
+  defaultSelectValue,
+  error,
+  showError,
+}) => {
+  return (
+    <>
+      <Select
+        key={labelId}
+        labelId={labelId}
+        id={id}
+        value={value}
+        onChange={onChange}
+        displayEmpty
+        error={error}
+      >
+        {createOptions(options, defaultSelect, defaultSelectValue)}
+      </Select>
+      {showError ? <FormHelperText>{error}</FormHelperText> : null}
+    </>
+  );
+};
 
 export default MaterialSelect;

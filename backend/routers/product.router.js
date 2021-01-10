@@ -1,9 +1,9 @@
 const {
   addProduct,
   getProducts,
+  getProductById,
 } = require("../controllers/product.controller");
 const { requireSignin, adminMiddleware } = require("../middlewares");
-const Product = require("../models/product.model");
 const router = require("express").Router();
 
 //multer
@@ -23,10 +23,13 @@ router.post(
   "/product/add-products",
   requireSignin,
   adminMiddleware,
-  upload.array("productPicture"),
+  upload.array("productImages"),
   addProduct
 );
 
+//get all products
 router.get("/product/get-products", getProducts);
+//get product by id
+router.get("/product/:id/details", getProductById);
 
 module.exports = router;

@@ -4,30 +4,38 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { register } from "../../actions";
 import Layout from "../../components/Layout";
-import Input from "../../components/UI/Input";
+import MaterialInput from "../../components/UI/MaterialUI/Input";
+import { FIRST_NAME, LAST_NAME, USER } from "../../utils/constants";
+import {
+  validateEmail,
+  validateText,
+  validatePassword,
+} from "../../validations";
 
 function Signup() {
-  const auth = useSelector(state => state.auth);
+  const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   //states
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [firstName, setFirstName] = useState("");
+  const [firstNameError, setFirstNameError] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [lastNameError, setLastNameError] = useState("");
+  const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
   if (auth.authenticate) {
-    return <Redirect to={'/'} />
+    return <Redirect to={"/"} />;
   }
 
   const registerUser = (e) => {
     e.preventDefault();
-    let user = { firstName, lastName, email, password }
+    let user = { firstName, lastName, email, password };
 
     dispatch(register(user));
-
-  }
+  };
   return (
     <Layout>
       <Container>
@@ -41,41 +49,65 @@ function Signup() {
         >
           <Col md={{ span: 6, offset: 3 }}>
             <Form onSubmit={registerUser}>
-              <Input
-                controlId="firstNameInput"
-                label="First Name"
+              <MaterialInput
+                labelName="First Name"
                 type="text"
-                placeholder="Enter First Name"
+                placeholder="first name"
                 value={firstName}
-                errorMessage=""
-                onChange={(e) => setFirstName(e.target.value)}
+                onChange={(e) =>
+                  validateText(
+                    e.target.value,
+                    setFirstName,
+                    setFirstNameError,
+                    FIRST_NAME
+                  )
+                }
+                errorMessage={firstNameError}
+                showError={true}
               />
-              <Input
-                controlId="lastNameInput"
-                label="Last Name"
+              <MaterialInput
+                labelName="Last Name"
                 type="text"
-                placeholder="Enter Last Name"
+                placeholder="Last name"
                 value={lastName}
-                errorMessage=""
-                onChange={(e) => setLastName(e.target.value)}
+                onChange={(e) =>
+                  validateText(
+                    e.target.value,
+                    setLastName,
+                    setLastNameError,
+                    LAST_NAME
+                  )
+                }
+                errorMessage={lastNameError}
+                showError={true}
               />
-              <Input
-                controlId="emailInput"
-                label="Email"
+              <MaterialInput
+                labelName="Email"
                 type="email"
-                placeholder="Enter Email"
+                placeholder="email"
                 value={email}
-                errorMessage=""
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) =>
+                  validateEmail(e.target.value, setEmail, setEmailError, USER)
+                }
+                errorMessage={emailError}
+                showError={true}
               />
-              <Input
-                controlId="passwordInput"
-                label="Password"
+
+              <MaterialInput
+                labelName="Password"
                 type="password"
-                placeholder="XXXXXXX"
+                placeholder="xxxxxx"
                 value={password}
-                errorMessage=""
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) =>
+                  validatePassword(
+                    e.target.value,
+                    setPassword,
+                    setPasswordError,
+                    USER
+                  )
+                }
+                errorMessage={passwordError}
+                showError={true}
               />
               <Button variant="primary" type="submit">
                 Submit

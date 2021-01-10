@@ -4,28 +4,30 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { login } from "../../actions";
 import Layout from "../../components/Layout";
-import Input from "../../components/UI/Input";
+import MaterialInput from "../../components/UI/MaterialUI/Input";
+import { USER } from "../../utils/constants";
+import { validateEmail, validatePassword } from "../../validations";
 
 function Signin() {
   const dispatch = useDispatch();
 
   //states
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const auth = useSelector(state => state.auth);
+  const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const auth = useSelector((state) => state.auth);
 
   if (auth.authenticate) {
-    return <Redirect to={'/'} />
+    return <Redirect to={"/"} />;
   }
 
   const loginUser = (e) => {
     e.preventDefault();
-    let user = { email, password }
+    let user = { email, password };
 
     dispatch(login(user));
-
-  }
+  };
   return (
     <Layout>
       <Container>
@@ -39,24 +41,35 @@ function Signin() {
         >
           <Col md={{ span: 6, offset: 3 }}>
             <Form onSubmit={loginUser}>
-
-              <Input
-                controlId="emailInput"
-                label="Email"
+              <MaterialInput
+                // key="email"
+                labelName="Email"
                 type="email"
-                placeholder="Enter Email"
+                placeholder="email"
                 value={email}
-                errorMessage=""
-                onChange={e => setEmail(e.target.value)}
+                onChange={(e) =>
+                  validateEmail(e.target.value, setEmail, setEmailError, USER)
+                }
+                errorMessage={emailError}
+                showError={true}
               />
-              <Input
-                controlId="passwordInput"
-                label="Password"
+
+              <MaterialInput
+                // key="password"
+                labelName="Password"
                 type="password"
-                placeholder="XXXXXXX"
+                placeholder="xxxxxx"
                 value={password}
-                errorMessage=""
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) =>
+                  validatePassword(
+                    e.target.value,
+                    setPassword,
+                    setPasswordError,
+                    USER
+                  )
+                }
+                errorMessage={passwordError}
+                showError={true}
               />
               <Button variant="primary" type="submit">
                 Submit

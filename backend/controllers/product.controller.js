@@ -7,7 +7,7 @@ exports.addProduct = (req, res) => {
       message: "Please provide the product details",
     });
   }
-  const { name, price, description, quantity, category } = req.body;
+  const { name, price, description, quantity, categoryId } = req.body;
 
   let productPictures = [];
   if (req.files.length > 0) {
@@ -23,7 +23,7 @@ exports.addProduct = (req, res) => {
     price: price,
     description: description,
     quantity: quantity,
-    category: category,
+    categoryId: categoryId,
     pictures: productPictures,
     createdBy: req.user._id,
   });
@@ -50,9 +50,31 @@ exports.getProducts = (req, res) => {
         result: err,
       });
     else if (products)
-      return res.status(201).json({
+      return res.status(200).json({
         message: "Products fetched successfully!",
         result: products,
+      });
+  });
+};
+
+exports.getProductById = (req, res) => {
+  console.log("----> get product by id....")
+  if (!req.params.id) {
+    return res.status(400).json({
+      message: "Please provide the product id.",
+      error: "Product id is required!",
+    });
+  }
+  Product.find({_id: req.params.id}).populate({path:"categoryId", select: {name: 1}}).exec((err, products) => {
+    if (err)
+      return res.status(400).json({
+        message: "Error occure while fetching the products. ",
+        result: err,
+      });
+    else if (products)
+      return res.status(200).json({
+        message: "Product details fetched successfully!",
+        product: products[0],
       });
   });
 };
