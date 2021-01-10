@@ -15,17 +15,18 @@ export default function ProductDetails(props) {
   const id = props.match.params.id;
   const dispatch = useDispatch();
   const product = useSelector((state) => state.product.product);
-  console.log(product);
-  if (product === null) {
-    dispatch(getProductById(id));
-  } else if (product._id !== id) {
-    // dispatch(getProductById(id));
-  }
+  // console.log(product);
+  // if (product === null) {
+  //   dispatch(getProductById(id));
+  // } else if (product._id !== id) {
+  //   // dispatch(getProductById(id));
+  // }
 
   const [productImage, setProductImage] = useState(undefined);
   const [selectedImageIndex, setSelectedImageIndex] = useState(-1);
 
   useEffect(() => {
+    dispatch(getProductById(id));
     if (product !== null && product.pictures.length > 0) {
       setProductImage(product.pictures[0].img);
       setSelectedImageIndex(0);
