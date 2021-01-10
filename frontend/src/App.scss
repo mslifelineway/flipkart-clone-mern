@@ -22,3 +22,8 @@ a:hover,
   cursor: pointer;
   //   background: $aGradientBackground;
 }
+
+.MuiButton-contained {
+  outline: none;
+}
+

@@ -21,11 +21,9 @@ function App() {
   useEffect(() => {
     if (!auth.authenticate) {
       dispatch(isUserLoggedIn());
-      if (category.categories.length < 1) dispatch(getInitialData());
     }
-    // console.log("categories: " + JSON.stringify(category.categories))
-    // if (category.categories.length < 1) dispatch(getInitialData());
-  });
+    dispatch(getInitialData());
+  }, []);
 
   return (
     <>

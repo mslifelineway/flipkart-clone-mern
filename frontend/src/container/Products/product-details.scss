@@ -3,16 +3,85 @@ $aGradientBackground: linear-gradient(
   rgba(226, 252, 165, 0.753),
   rgba(81, 192, 236, 0.7)
 );
+.MuiButton-contained {
+  outline: none;
+}
+
 
 .product-details-container {
   margin-top: 30px;
   box-shadow: 1px 2px 4px 1px #e4e4e4;
-  padding: 40px 20px;
+  padding: 20px 5px;
   display: flex;
 
-  .Product-Image-Container {
-    width: 50%;
-    min-height: 200px;
+  .left-section {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+
+    .Product-Image-Container {
+      width: 100%;
+      min-height: 200px;
+      display: flex;
+      flex-grow: 1;
+
+      .product-image-lists {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        width: 60px;
+        height: 100%;
+        overflow-x: hidden;
+        overflow-y: auto;
+        // border: 1px solid #e2e2e2;
+
+        img {
+          width: 50px;
+          height: 60px;
+          background-position: center;
+          object-fit: contain;
+          margin: 0;
+          padding: 8px 5px;
+          border: 1px solid #e2e2e2;
+          cursor: pointer;
+
+          &.has-image-selected {
+            background: #f0f0f0;
+          }
+          &:hover {
+            background: #f0f0f0;
+            border: 1px solid rgb(230, 230, 230);
+          }
+        }
+      }
+
+      .product-image-view {
+        width: 100%;
+        margin-left: 10px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img {
+          width: 100%;
+          height: 300px;
+          background-position: center;
+          object-fit: contain;
+          padding: 1px;
+          cursor: crosshair;
+        }
+      }
+    }
+
+    .buttons-container {
+      margin-top: 30px;
+      padding-left: 100px;
+      padding-right: 20px;
+      height: 40px;
+      display: flex;
+      justify-content: space-between;
+      
+    }
   }
   .product-details {
     .navigation-icon {
@@ -54,7 +123,6 @@ $aGradientBackground: linear-gradient(
       font-size: 16px;
       color: #494949;
       font-weight: 600;
-
     }
     .product-description {
       margin-top: 8px;

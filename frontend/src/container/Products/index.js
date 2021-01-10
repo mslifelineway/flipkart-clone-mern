@@ -254,8 +254,8 @@ const ProductsPage = () => {
   //product details
   const columns = [
     { field: "id", headerName: "Sl.No", width: 100 }, //key of eack row, this must be unique
-    { field: "_id", headerName: "Product Id", width: 200 }, //product id
-    { field: "name", headerName: "Name", width: 250 },
+    { field: "_id", headerName: "Product Id", width: 280 }, //product id
+    { field: "name", headerName: "Name", width: 350 },
     { field: "quantity", headerName: "Quantity", type: "number", width: 130 },
     {
       field: "price",
@@ -264,8 +264,8 @@ const ProductsPage = () => {
       width: 130,
     },
     {
-      field: "description",
-      headerName: "Description",
+      field: "category",
+      headerName: "Category",
       sortable: false,
       width: 250,
     },
@@ -277,10 +277,8 @@ const ProductsPage = () => {
       ...p,
     };
   });
-  // let history = useHistory();
+ 
   const productDetailsPage = (id) => {
-    // console.log("---id " + id);
-    // history.push(`/product/${id}`);
     window.open(`/product/${id}/details`);
   };
   return (

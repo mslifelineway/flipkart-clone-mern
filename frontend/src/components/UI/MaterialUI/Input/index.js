@@ -1,4 +1,4 @@
-import { FormHelperText, Input, TextField } from "@material-ui/core";
+import { FormHelperText, TextField } from "@material-ui/core";
 import React from "react";
 
 /** To show the error message below the input,
