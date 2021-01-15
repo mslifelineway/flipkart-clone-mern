@@ -2,6 +2,7 @@ const {
   addProduct,
   getProducts,
   getProductById,
+  getProductByCategorySlug,
 } = require("../controllers/product.controller");
 const { requireSignin, adminMiddleware } = require("../middlewares");
 const router = require("express").Router();
@@ -31,5 +32,6 @@ router.post(
 router.get("/product/get-products", getProducts);
 //get product by id
 router.get("/product/:id/details", getProductById);
+router.get("/category/:slug/products", getProductByCategorySlug);
 
 module.exports = router;

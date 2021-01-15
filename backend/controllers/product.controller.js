@@ -1,5 +1,6 @@
 const slugify = require("slugify");
 const Product = require("../models/product.model");
+const Category = require("../models/category.model");
 
 exports.addProduct = (req, res) => {
   if (!req.body) {
@@ -58,23 +59,55 @@ exports.getProducts = (req, res) => {
 };
 
 exports.getProductById = (req, res) => {
-  console.log("----> get product by id....")
   if (!req.params.id) {
     return res.status(400).json({
       message: "Please provide the product id.",
       error: "Product id is required!",
     });
   }
-  Product.find({_id: req.params.id}).populate({path:"categoryId", select: {name: 1}}).exec((err, products) => {
-    if (err)
-      return res.status(400).json({
-        message: "Error occure while fetching the products. ",
-        result: err,
-      });
-    else if (products)
-      return res.status(200).json({
-        message: "Product details fetched successfully!",
-        product: products[0],
-      });
-  });
+  Product.find({ _id: req.params.id })
+    .populate({ path: "categoryId", select: { name: 1 } })
+    .exec((err, products) => {
+      if (err)
+        return res.status(400).json({
+          message: "Error occure while fetching the products. ",
+          result: err,
+        });
+      else if (products)
+        return res.status(200).json({
+          message: "Product details fetched successfully!",
+          product: products[0],
+        });
+    });
+};
+
+function filterProductsInPriceRange(products, minPrice, maxPrice) {
+  return products.filter(p => p.price > minPrice && p.price <= maxPrice )
+}
+exports.getProductByCategorySlug = (req, res) => {
+  const { slug } = req.params;
+
+  Category.findOne({ slug }, { _id: 1 })
+    .then((categoryId) => {
+      Product.find({ categoryId })
+        .then(async (products) => {
+          res.status(200).json({
+            products,
+            productsByPrice : {
+              under5K : await filterProductsInPriceRange(products, 0, 5000),
+              under10K : await filterProductsInPriceRange(products, 5000, 10000),
+              under15K : await filterProductsInPriceRange(products, 10000, 15000),
+              under20K : await filterProductsInPriceRange(products, 15000, 20000),
+              under25K : await filterProductsInPriceRange(products, 20000, 25000),
+              under30K : await filterProductsInPriceRange(products, 25000, 30000),
+            }
+          })
+        })
+        .catch((e) => {
+          res.status(400).json(e);
+        });
+    })
+    .catch((e) => {
+      res.status(400).json(e);
+    });
 };

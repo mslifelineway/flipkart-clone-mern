@@ -1,12 +1,15 @@
 import "./App.scss";
+import {Route, Switch } from "react-router-dom";
 import HomePage from "./containers/HomePage";
-import MenuHeader from "./containers/MenuHeader";
+import ProductListPage from "./containers/ProductListPage";
 
 function App() {
   return (
-    <> 
-    <HomePage />
-    <MenuHeader />
+    <>
+      <Switch>
+        <Route path="/" exact component={HomePage} />
+        <Route path="/:slug" component={ProductListPage} />
+      </Switch>
     </>
   );
 }

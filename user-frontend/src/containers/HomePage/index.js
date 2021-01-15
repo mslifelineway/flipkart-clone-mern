@@ -6,7 +6,7 @@ function HomePage() {
   return (
     <>
       <Layout>
-         dashboard
+         Home Page
       </Layout>
     </>
   );

@@ -1,0 +1,55 @@
+$aColor: #4ec4f3;
+
+.product-items {
+  border-top: 1px solid #e4e4e4;
+  display: flex;
+  padding: 20px;
+  align-items: center;
+  justify-content: flex-start;
+  .item {
+    margin: 0 5px;
+    display: flex;
+    flex-direction: column;
+    padding: 15px 10px;
+    width: 15%;
+    cursor: pointer;
+    &:hover {
+      > .name {
+        color: $aColor;
+      }
+    }
+
+    .image {
+      text-align: center;
+      position: relative;
+      img {
+        width: 56px;
+        min-height: 80px;
+        object-fit: contain;
+      }
+      .favoriteIcon {
+        position: absolute;
+        right: 0;
+        fill: #c2c2c2;
+      }
+    }
+
+    .name {
+      text-align: center;
+      margin-top: 18px;
+      font-weight: 400;
+      color: black;
+      font-size: 16px;
+    }
+
+    .ratings {
+      text-align: center;
+      margin-top: 5px;
+    }
+    .price {
+      text-align: center;
+      margin-top: 5px;
+      font-weight: 500;
+    }
+  }
+}

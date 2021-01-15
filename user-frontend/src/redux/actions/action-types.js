@@ -6,3 +6,7 @@ export const categoryActionTypes = {
   ADD_CATEOGRY_SUCCESS: "ADD_CATEOGRY_SUCCESS",
   ADD_CATEGORY_FAILURE: "ADD_CATEGORY_FAILURE",
 };
+
+export const productActionTypes = {
+  GET_PRODUCTS_BY_CATEGORY_SLUG: "GET_PRODUCTS_BY_CATEGORY_SLUG",
+};

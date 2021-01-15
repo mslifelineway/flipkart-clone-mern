@@ -11,3 +11,7 @@ exports.createCategoriesToArray = (categories, options = []) => {
   }
   return options;
 };
+
+exports.capatilaizeText = (text) => {
+  return text.charAt(0).toUpperCase() + text.slice(1);
+};
