@@ -68,11 +68,11 @@ exports.signIn = (req, res) => {
         ) {
           //authenticated successfully, so let's create a token that will manage the user session
           const token = jwt.sign({ _id: user._id , role: user.role}, process.env.JWT_SECRET, {
-            expiresIn: "1h",
+            expiresIn: "2d",
           });
 
           const { firstName, lastName, email, role, fullName } = user;
-          res.cookie("token", token, { expiresIn: "10d"});
+          res.cookie("token", token, { expiresIn: "2d"});
           return res.status(200).json({
             token,
             user: { firstName, lastName, email, role, fullName },

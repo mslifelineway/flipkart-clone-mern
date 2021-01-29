@@ -47,4 +47,67 @@
     max-width: 30%;
     height: 400px;
   }
+
+  .update-buttons {
+    display: flex;
+    justify-content: flex-start;
+    .button {
+      margin: 20px;
+    }
+  }
+  .button {
+    outline: none;
+    box-shadow: none;
+
+    &:focus {
+      outline: none;
+      box-shadow: none;
+    }
+  }
+
+  .update-category-modal {
+    .modal-body {
+      min-width: 50%;
+      height: 400px;
+    }
+    .update-category-modal-form {
+      margin-top: 40px;
+      > .row {
+        justify-content: space-around;
+        display: flex;
+      }
+
+      .buttonGroups {
+        margin: 0 auto;
+        margin-top: 40px;
+        justify-content: flex-center;
+        width: 40%;
+        .button {
+          width: 100%;
+          white-space: nowrap;
+          height: 35px;
+          padding: 0 60px;
+          margin: 0 10px;
+          font-size: 12px;
+        }
+      }
+
+      .row {
+        width: 100%;
+        .MuiInput-root {
+          width: 30%;
+          display: flex;
+          flex-grow: 1;
+          margin-left: 8px;
+          margin-right: 8px;
+        }
+        .MuiFormControl-root {
+          margin: 0 8px;
+          .MuiInput-root {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
 }

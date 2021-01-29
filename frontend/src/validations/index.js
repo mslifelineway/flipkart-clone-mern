@@ -29,7 +29,6 @@ exports.validateText = (value, setValue, setError, validateFor) => {
 };
 
 exports.validateSelect = (value, setValue, setError, validateFor) => {
-  console.log(value);
   setError("");
   if (value === "") {
     if (validateFor === CATEGORY) {
@@ -42,7 +41,6 @@ exports.validateSelect = (value, setValue, setError, validateFor) => {
 };
 
 exports.validateEmail = (value, setValue, setError, validateFor) => {
-  console.log(value);
   setError("");
   if (value === "") {
     if (validateFor === USER) {

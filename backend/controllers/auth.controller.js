@@ -59,9 +59,9 @@ exports.signIn = (req, res) => {
         if (user.authenticate(req.body.password)) {
           //authenticated successfully, so let's create a token that will manage the user session
           const token = jwt.sign({ _id: user._id, role: user.role }, process.env.JWT_SECRET, {
-            expiresIn: "30d",
+            expiresIn: "3d",
           });
-
+          res.cookie("token", token, { expiresIn: "3d"});
           const { firstName, lastName, email, role, fullName } = user;
           return res.status(200).json({
             token,

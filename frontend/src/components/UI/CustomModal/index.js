@@ -2,7 +2,7 @@ import { Container } from "@material-ui/core";
 import "./custom-modal.scss";
 function CustomModal(props) {
   return (
-    <Container className={`customAppModal `+ props.show}>
+    <Container className={`customAppModal ${props.show} ${props.className ? props.className : ''}`}>
       <Container className="modal-body">
         {props.modalTitle ? (
           <Container className="madal-title">
